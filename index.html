@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LicenseVault – Software License Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>LicenseVault</h1>
+  <p>Track software licenses, seats and renewal dates in one place.</p>
+</header>
+<main>
+  <section class="summary" aria-label="Summary">
+    <div><b id="cTotal">0</b> licenses</div>
+    <div><b id="cActive">0</b> active</div>
+    <div class="warn"><b id="cSoon">0</b> expiring in 30 days</div>
+    <div class="bad"><b id="cExp">0</b> expired</div>
+  </section>
+
+  <form id="addForm">
+    <h2>Add a license</h2>
+    <label>Software <input id="name" required placeholder="e.g. Visual Studio Pro"></label>
+    <label>Vendor <input id="vendor" required placeholder="e.g. Microsoft"></label>
+    <label>License key <input id="key" required placeholder="XXXX-XXXX-XXXX"></label>
+    <label>Seats <input id="seats" type="number" min="1" value="1" required></label>
+    <label>Expiry date <input id="expiry" type="date" required></label>
+    <button type="submit">Add license</button>
+    <p id="msg" role="alert"></p>
+  </form>
+
+  <section>
+    <div class="tools">
+      <input id="search" type="search" placeholder="Search software or vendor" aria-label="Search">
+      <select id="filter" aria-label="Filter by status">
+        <option value="all">All</option>
+        <option value="active">Active</option>
+        <option value="soon">Expiring soon</option>
+        <option value="expired">Expired</option>
+      </select>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Software</th><th>Vendor</th><th>Key</th><th>Seats</th><th>Expiry</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p id="empty" hidden>No licenses match. Add one above or clear the search.</p>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
